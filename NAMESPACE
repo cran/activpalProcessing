@@ -1,0 +1,5 @@
+exportPattern("^[[:alpha:]]+")
+importFrom(chron, chron)
+importFrom(stats, sd)
+importFrom(utils, read.csv, write.table)
+
