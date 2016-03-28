@@ -20,7 +20,7 @@ character string identifying the name of the bed log.  Default value is NULL}
 character string identifying the name of the on/off log. Default value is NULL}
 }
 \details{
-AP events files must be saved using the following naming convention - "subject id_visit_study name.csv".  For example, if subject id = 1, visit = 3 and study name = "Physical Activity Intervention" the events file is named "1_3_Physical Activity Intervention.csv". bed log and on/off log do not need to be provided.  Results will be estimated from all AP data (e.g. sleep time and off time will be included in analyses) - results and sleep wake wear table will indicate no valid logs were provided.  If logs are provided, they must be in the exact format of the example logs provided with this package. Example logs may be loaded into R and exported to the specified working directory (see Examples).  These files should serve as templates for the user to create their own logs.}
+AP events files must be saved using the following naming convention - "study name_subject id_visit.csv".  For example, if study name = "Physical Activity Intervention", subject id = 1, visit = 3 the events file is named "Physical Activity Intervention_1_3.csv". bed log and on/off log do not need to be provided.  Results will be estimated from all AP data (e.g. sleep time and off time will be included in analyses) - results and sleep wake wear table will indicate no valid logs were provided.  If logs are provided, they must be in the exact format of the example logs provided with this package. Example logs may be loaded into R and exported to the specified working directory (see Examples).  These files should serve as templates for the user to create their own logs.}
 
 \value{
 Results Table - A .csv file generated and saved in the specified directory.  The file contains the following variables estimated per day device was worn. 
@@ -77,9 +77,9 @@ data("log.subjects",package="activpalProcessing")
 data("log.bed",package="activpalProcessing")
 data("log.on.off",package="activpalProcessing")
 
-write.table("log.subjects",file=paste(directory,"template.log.subjects.csv",sep=""))
-write.table("log.bed",file=paste(directory,"template.log.bed.csv",sep=""))
-write.table("log.on.off",file=paste(directory,"template.log.on.off.csv",sep=""))
+write.table(log.subjects,file=paste(directory,"temp.log.subjects.csv",sep=""),sep=",",row.names=F)
+write.table(log.bed,file=paste(directory,"temp.log.bed.csv",sep=""),sep=",",row.names=F)
+write.table(log.on.off,file=paste(directory,"temp.log.on.off.csv",sep=""),sep=",",row.names=F)
 
 #	process AP events files saved in directory 		
 process.AP(directory=directory, name.of.log.subjects, name.of.log.bed, name.of.log.on.off)

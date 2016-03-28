@@ -1,8 +1,8 @@
 Package: activpalProcessing
 Type: Package
 Title: Process activPAL Events Files
-Version: 1.0
-Date: 2015-12-30
+Version: 1.0.1
+Date: 2016-03-27
 Author: Kate Lyden
 Maintainer: Kate Lyden <activpalProcessing@gmail.com>
 Description: Performs estimation of physical activity and sedentary behavior variables from activPAL (PAL Technologies, Glasgow, Scotland) events files. See <http://paltechnologies.com> for more information on the activPAL.
@@ -11,7 +11,7 @@ LazyLoad: yes
 Depends: R (>= 2.10), graphics, grDevices, stats, utils
 Imports: chron
 LazyData: yes
-Packaged: 2016-01-25 18:57:01 UTC; klyden
+Packaged: 2016-03-27 21:10:50 UTC; klyden
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2016-01-26 00:22:47
+Date/Publication: 2016-03-28 11:04:02

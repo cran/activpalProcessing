@@ -1,4 +1,4 @@
-88fbfd8201bbc2b08f2645dd8fe5e43d *DESCRIPTION
+25e6b823eca9b50d7867e42683a10061 *DESCRIPTION
 a3a94eae6358046f8b189e30b0952618 *NAMESPACE
 64f28b3bd8f48bcd6b345bea5cacf4e5 *R/activpal.file.reader.R
 14ba5ed2128c10fdc5bbe3b5fa7798e9 *R/breaks.AP.R
@@ -11,7 +11,7 @@ d309f4776059b215cd2bae4366ca787c *R/identifyStudy.R
 5b29fea975fe9a4c5f27d06872a916cc *R/lit.min.AP.R
 ea2dc001a60a5c927159ac8009800692 *R/mvpa.min.AP.R
 1e351db9ba5e15b896e14c43fcda6ec7 *R/on.off.R
-057c2bcee7cf573c41225f2bdbc372ef *R/process.AP.R
+f305a3092251fb35e6729feba80c9acf *R/process.AP.R
 91f10b9f9b601065698620689817905e *R/prolonged.sed.bouts.min.R
 3d9b0c4e4103c0eed20ec284a3e06efd *R/prolonged.sed.bouts.num.R
 0d154ffb5425b750580d27e10df4a3e9 *R/second.by.second.R
@@ -48,7 +48,7 @@ b8c2e52363185979fe1abbe70c380483 *man/log.bed.Rd
 ca5cf1ab0a3d0218f805d0b94cdb493f *man/log.subjects.Rd
 f9624b97c250c42c8df8dec3511806d3 *man/mvpa.min.AP.Rd
 74e3d9ee7f990453151b958400e9c12b *man/on.off.Rd
-bf8af922c578f102dbcd582fcea571d3 *man/process.AP.Rd
+07457600a2c87db9ec0810960593427d *man/process.AP.Rd
 ed9c9abde796126ba0caedb9864e2d3a *man/prolonged.sed.bouts.min.Rd
 1f6efde7eca74d08a8a157b278be5487 *man/prolonged.sed.bouts.num.Rd
 df127127f243b8da6d33ad080faa380c *man/second.by.second.Rd

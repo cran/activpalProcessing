@@ -4,16 +4,19 @@ function(directory,name.of.log.subjects,name.of.log.bed=NULL,name.of.log.on.off=
 	counter <- 1
 	
 	subs <- identifySubjects(directory,name.of.log.subjects)
+	sn <- length(subs)
 	visit <- identifyVisits(directory,name.of.log.subjects)
+	vn <- length(visit)
 	study <- identifyStudy(directory,name.of.log.subjects)
 					
  for (s in subs)
 	{
 	for (v in visit)
 		{
-			print(s)
+			print(paste("Study ID",s,sep=" "))
 			print(v)
 			print(study)
+			print(paste(counter,"of",sn*vn,sep=" "))
 					
 	 temp <- Sys.glob(paste(directory,study,"_",s,"_",v,".csv",sep=""))
 		
