@@ -44,4 +44,3 @@ function(directory=directory,id,visit,name.of.log.bed,data)
 	
 	return(data)
 	}
-

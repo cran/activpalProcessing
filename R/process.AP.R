@@ -3,20 +3,17 @@ function(directory,name.of.log.subjects,name.of.log.bed=NULL,name.of.log.on.off=
 {
 	counter <- 1
 	
-	subs <- identifySubjects(directory,name.of.log.subjects)
-	sn <- length(subs)
-	visit <- identifyVisits(directory,name.of.log.subjects)
-	vn <- length(visit)
-	study <- identifyStudy(directory,name.of.log.subjects)
+	subs <- identifySubjects(directory, name.of.log.subjects)
+	visit <- identifyVisits(directory, name.of.log.subjects)
+	study <- identifyStudy(directory, name.of.log.subjects)
 					
  for (s in subs)
 	{
 	for (v in visit)
 		{
-			print(paste("Study ID",s,sep=" "))
+			print(s)
 			print(v)
 			print(study)
-			print(paste(counter,"of",sn*vn,sep=" "))
 					
 	 temp <- Sys.glob(paste(directory,study,"_",s,"_",v,".csv",sep=""))
 		
@@ -150,6 +147,16 @@ function(directory,name.of.log.subjects,name.of.log.bed=NULL,name.of.log.on.off=
 							
 			temp$counter <- 1
 			
+	## add intensity column to file
+	
+	d <- dim(temp)[1]
+
+	temp$intensity <- "light"
+	inds.sed <- (1:d)[temp$ap.posture==0]
+	temp$intensity[inds.sed] <- "sedentary"
+	inds.mvpa <- (1:d)[temp$mets>=3]
+	temp$intensity[inds.mvpa] <- "mvpa"
+			
 #	get step count - cumulative steps reported in file so 	need to figure out total steps/day
 			
 	d <- dim(temp)[1]
@@ -190,6 +197,7 @@ function(directory,name.of.log.subjects,name.of.log.bed=NULL,name.of.log.on.off=
 		# make file with bed and off time cleaned out
 		data <- temp[temp$in.bed==0&temp$off==0,]
 		
+				
 		if(dim(data)[1]>1)
 	{
 #		head(data)	
@@ -220,11 +228,11 @@ function(directory,name.of.log.subjects,name.of.log.bed=NULL,name.of.log.on.off=
 	stand.mins = tapply(data$ap.posture,data$date,stand.min.AP),
 	step.mins = tapply(data$ap.posture,data$date,step.min.AP),
 
-	lit.mins = tapply(data$mets,data$date,lit.min.AP),
+	lit.mins = tapply(data$intensity=="light",data$date,sum)/60,
 	mvpa.mins = tapply(data$mets,data$date,mvpa.min.AP),
 	
 	breaks = tapply(data$ap.posture,data$date,breaks.AP),
-	break.rate = tapply(data$ap.posture,data$date,breaks.AP)/(tapply(data$ap.posture,data$date,sed.min.AP)),
+	break.rate = tapply(data$ap.posture,data$date,breaks.AP)/((tapply(data$ap.posture,data$date,sed.min.AP))/60),
 	
 	guideline.minutes = tapply(data$one.min.mets,data$date,guideline.bouts.min),
 	num.guideline.bouts = tapply(data$one.min.mets,data$date,guideline.bouts.num),
@@ -316,6 +324,8 @@ function(directory,name.of.log.subjects,name.of.log.bed=NULL,name.of.log.on.off=
 	
 	steps <- steps.3$steps[inds]
 	
+	
+	
 		# make .csv file with PA and SB variables per day
 		
 		results.table <- data.frame(study=study,sub=as.numeric(s),visit=v,date=unique(data$date),
@@ -328,11 +338,11 @@ function(directory,name.of.log.subjects,name.of.log.bed=NULL,name.of.log.on.off=
 	stand.mins = tapply(data$ap.posture,data$date,stand.min.AP),
 	step.mins = tapply(data$ap.posture,data$date,step.min.AP),
 
-	lit.mins = tapply(data$mets,data$date,lit.min.AP),
+	lit.mins = tapply(data$intensity=="light",data$date,sum)/60,
 	mvpa.mins = tapply(data$mets,data$date,mvpa.min.AP),
 	
 	breaks = tapply(data$ap.posture,data$date,breaks.AP),
-	break.rate = tapply(data$ap.posture,data$date,breaks.AP)/(tapply(data$ap.posture,data$date,sed.min.AP)),
+	break.rate = tapply(data$ap.posture,data$date,breaks.AP)/((tapply(data$ap.posture,data$date,sed.min.AP))/60),
 	
 	guideline.minutes = tapply(data$one.min.mets,data$date,guideline.bouts.min),
 	num.guideline.bouts = tapply(data$one.min.mets,data$date,guideline.bouts.num),
@@ -428,11 +438,11 @@ function(directory,name.of.log.subjects,name.of.log.bed=NULL,name.of.log.on.off=
 	stand.mins = tapply(data$ap.posture,data$date,stand.min.AP),
 	step.mins = tapply(data$ap.posture,data$date,step.min.AP),
 
-	lit.mins = tapply(data$mets,data$date,lit.min.AP),
+	lit.mins = tapply(data$intensity=="light",data$date,sum)/60,
 	mvpa.mins = tapply(data$mets,data$date,mvpa.min.AP),
 	
 	breaks = tapply(data$ap.posture,data$date,breaks.AP),
-	break.rate = tapply(data$ap.posture,data$date,breaks.AP)/(tapply(data$ap.posture,data$date,sed.min.AP)),
+	break.rate = tapply(data$ap.posture,data$date,breaks.AP)/((tapply(data$ap.posture,data$date,sed.min.AP))/60),
 	
 	guideline.minutes = tapply(data$one.min.mets,data$date,guideline.bouts.min),
 	num.guideline.bouts = tapply(data$one.min.mets,data$date,guideline.bouts.num),
@@ -525,11 +535,11 @@ function(directory,name.of.log.subjects,name.of.log.bed=NULL,name.of.log.on.off=
 	stand.mins = tapply(data$ap.posture,data$date,stand.min.AP),
 	step.mins = tapply(data$ap.posture,data$date,step.min.AP),
 
-	lit.mins = tapply(data$mets,data$date,lit.min.AP),
+	lit.mins = tapply(data$intensity=="light",data$date,sum)/60,
 	mvpa.mins = tapply(data$mets,data$date,mvpa.min.AP),
 			
 	breaks = tapply(data$ap.posture,data$date,breaks.AP),
-	break.rate = tapply(data$ap.posture,data$date,breaks.AP)/(tapply(data$ap.posture,data$date,sed.min.AP)),
+	break.rate = tapply(data$ap.posture,data$date,breaks.AP)/((tapply(data$ap.posture,data$date,sed.min.AP))/60),
 	
 	guideline.minutes = tapply(data$one.min.mets,data$date,guideline.bouts.min),
 	num.guideline.bouts = tapply(data$one.min.mets,data$date,guideline.bouts.num),
@@ -688,4 +698,3 @@ function(directory,name.of.log.subjects,name.of.log.bed=NULL,name.of.log.on.off=
 				}
 				
 					}
-

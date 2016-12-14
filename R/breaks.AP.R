@@ -16,4 +16,3 @@ function(posture)
 		num.up.AP <- NA
 	return(num.up.AP=num.up.AP)	
 }
-

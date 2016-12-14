@@ -136,4 +136,3 @@ function(mets) {
 		return(sum((bout.ends + 1) - bout.starts)/60)
 
 }
-

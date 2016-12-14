@@ -6,4 +6,3 @@ function(mets,epoch=1)
 		mvpa.mins <- NA
 	return(mvpa.mins)
 }
-

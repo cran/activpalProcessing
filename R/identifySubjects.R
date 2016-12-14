@@ -5,4 +5,3 @@ function(directory=directory,name.of.log.subjects)
 	subs <- unique(as.numeric(list.subs$id))
 	return(subs)
 }
-

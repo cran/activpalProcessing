@@ -137,4 +137,3 @@ function(mets) {
 
 #	return( c(length(bout.starts), sum((bout.ends + 1) - bout.starts)/60, total.active.time.in.bouts/60) )
 }
-

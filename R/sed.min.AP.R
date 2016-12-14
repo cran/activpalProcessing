@@ -6,4 +6,3 @@ function(posture,epoch=1)
 		sed.mins <- NA
 	return(as.numeric(sed.mins))
 }
-

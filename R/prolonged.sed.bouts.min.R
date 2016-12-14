@@ -5,4 +5,3 @@ function(posture,epoch=1,n) {
 	lengths <- lengths.of.continuous.bouts.of.sed > n*(60/epoch)
 	return(sum(lengths.of.continuous.bouts.of.sed[lengths])/(60/epoch))
 	}
-

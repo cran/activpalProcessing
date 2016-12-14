@@ -5,4 +5,3 @@ function(directory=directory,name.of.log.subjects)
 	study <- unique(as.character(list.subs$study))
 	return(study)
 }
-

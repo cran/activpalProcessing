@@ -5,4 +5,3 @@ function(directory=directory,name.of.log.subjects)
 	visit <- unique(as.character(list.subs$visit))
 	return(visit)
 	}
-

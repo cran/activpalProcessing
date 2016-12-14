@@ -6,4 +6,3 @@ function(posture,epoch=1)
 		stand.mins <- NA
 	return(stand.mins)
 }
-

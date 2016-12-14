@@ -38,4 +38,3 @@ function(directory=directory,id,visit,name.of.log.on.off,data)
 				}	#end bed loop
 	return(data)
 	}
-

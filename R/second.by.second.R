@@ -4,11 +4,8 @@ function(data)
 	sec.by.sec.data <- data.frame(time=NA, date=NA, ap.posture=NA, mets=NA, met.hours=NA, steps=NA)
   sec.by.sec.data <- sec.by.sec.data[-1,]
   
-  #	AP assigns 1.4 METs to standing.  We believe standing is a light intensity activity so we change this value to 1.5 METs in order for standing to be counted towards light intensity time and to adjust to MET-hrs.
 		data$interval <- as.numeric(data$interval)
-		
-		data$methrs[data$activity==1] <- (data$interval[data$activity==1]/3600)*1.5
-		
+				
 		data$methrs <- as.numeric(data$methrs)
   
   	n <- dim(data)[1]
@@ -49,4 +46,3 @@ sec.by.sec.data$mets <- signif(sec.by.sec.data$mets,3)
 
 return(sec.by.sec.data)
 }
-

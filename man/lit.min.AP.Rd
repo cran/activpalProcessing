@@ -3,20 +3,22 @@
 \title{
 Estimate Time in Light Intensity Activity}
 \description{
-This function estimates time spent in light intensity activity.  Light intensity activity is activity between 1.5-2.99 METs.}
+This function estimates time spent in light intensity activity.  Light intensity activity is activity in the standing or stepping posture and between 1.5-2.99 METs.}
 
 \usage{
-lit.min.AP(mets, epoch = 1)
+lit.min.AP(mets, posture, epoch = 1)
 }
 \arguments{
   \item{mets}{
 mets is a vector of met values}
+  \item{posture}{
+posture is a vector of values 0-2 indicating 0=sitting, 1=standing, 2=stepping}
   \item{epoch}{
 numeric value indicating what epoch (in seconds) the data are in (e.g. 60 = 1 minute epochs).  The default value is 1 second}
 }
 
 \details{
-The default settings of the AP assign a met value of 1.25 to sitting, 1.4 to standing and estimates a met value for stepping activities.  Cadence is used to estimate mets for stepping.  With these settings all standing activity will be considered sedentary (e.g. < 1.5 mets).  In the second-by-second function in this package standing met values are changed to 1.5 so that standing is considered a light intensity activity}
+The default settings of the AP assign a met value of 1.25 to sitting, 1.4 to standing and estimates a met value for stepping activities.  Cadence is used to estimate mets for stepping.  Although the default met value for standing is 1.4, which is below the traditional met threshold for light intensity, standing is always considered light because it is an upright posture and only seated activities are considered sedentary}
 
 \value{
 a numeric value indicating hours spent in light intensity activity}
@@ -31,12 +33,9 @@ Kate Lyden}
 
 \examples{
 	
-data(second.by.second)
+data(second.by.second.data)
 mets <- second.by.second.data$mets	
-
-lit.min.AP(mets,epoch=1)
-
-# summarize by date
-tapply(second.by.second.data$mets, second.by.second.data$date, lit.min.AP,epoch=1)
+posture <- second.by.second.data$ap.posture
+lit.min.AP(mets,posture,epoch=1)
 }
 \keyword{light}
